@@ -51,7 +51,7 @@ function endGame(draw) {
   if (draw) {
     statusDisplay.innerText = 'Empate!';
   } else {
-    statusDisplay.innerText = `${circleTurn ? "O" : "X"} venceu!`;
+    statusDisplay.innerText = `${circleTurn ? 'O' : 'X'} venceu!`;
   }
   cells.forEach(cell => {
     cell.removeEventListener('click', handleClick);
@@ -59,6 +59,7 @@ function endGame(draw) {
 }
 
 function placeMark(cell, currentClass) {
+  cell.innerText = currentClass;
   cell.classList.add(currentClass);
 }
 

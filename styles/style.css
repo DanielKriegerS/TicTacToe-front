@@ -9,8 +9,14 @@ html {
   margin-top: 50px;
 }
 
+.board .row {
+  
+  background-color: lightgray;
+}
+
 .board {
   display: inline-block; 
+  padding: 6px;
 }
 
 .cell {
@@ -35,4 +41,14 @@ html {
   cursor: pointer;
   display: block; 
   margin: 20px auto 0; 
+}
+
+.row .xWin {
+  transition: background-color 0.8s ease-in-out;
+  background-color: rgba(15, 60, 220, .5);
+}
+
+.row .oWin {
+  transition: background-color 0.8s ease-in-out;
+  background-color: rgba(220, 15, 15, .3);
 }

@@ -26,7 +26,7 @@ function startGame() {
   cells.forEach(cell => {
     cell.classList.remove(X_CLASS);
     cell.classList.remove(O_CLASS);
-    cell.innerText = ''; // Limpa o conteúdo das células
+    cell.innerText = ''; 
     cell.removeEventListener('click', handleClick);
     cell.addEventListener('click', handleClick, { once: true });
   });
@@ -49,11 +49,19 @@ function handleClick(e) {
 }
 
 function endGame(draw) {
+  let winnerClass = '';
   if (draw) {
     statusDisplay.innerText = 'Empate!';
   } else {
+    winnerClass = circleTurn ? 'oWin' : 'xWin';
     statusDisplay.innerText = `${circleTurn ? 'O' : 'X'} venceu!`;
   }
+
+  const boardRows = document.querySelectorAll('.board .row');
+  boardRows.forEach(row => {
+    row.classList.add(winnerClass);
+  });
+
   cells.forEach(cell => {
     cell.removeEventListener('click', handleClick);
   });
@@ -63,8 +71,13 @@ function endGame(draw) {
     if (restart) {
       startGame();
     }
-  }, 500); 
+
+    boardRows.forEach(row => {
+      row.classList.remove(winnerClass);
+    });
+  }, 800);
 }
+
 function placeMark(cell, currentClass) {
   cell.innerText = currentClass;
   cell.classList.add(currentClass);

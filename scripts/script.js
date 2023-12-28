@@ -48,6 +48,9 @@ function handleClick(e) {
   }
 }
 
+let scoreX = 0;
+let scoreO = 0;
+
 function endGame(draw) {
   let winnerClass = '';
   if (draw) {
@@ -55,13 +58,23 @@ function endGame(draw) {
   } else {
     winnerClass = circleTurn ? 'oWin' : 'xWin';
     statusDisplay.innerText = `${circleTurn ? 'O' : 'X'} venceu!`;
+
+    if (circleTurn) {
+      scoreO++;
+      document.querySelector('.scoreO span').innerText = scoreO;
+    } else {
+      scoreX++;
+      document.querySelector('.scoreX span').innerText = scoreX;
+    }
   }
-
   const boardRows = document.querySelectorAll('.board .row');
-  boardRows.forEach(row => {
-    row.classList.add(winnerClass);
-  });
-
+  if(winnerClass != ''){
+    
+    boardRows.forEach(row => {
+      row.classList.add(winnerClass);
+    });
+  }
+  
   cells.forEach(cell => {
     cell.removeEventListener('click', handleClick);
   });
@@ -72,9 +85,11 @@ function endGame(draw) {
       startGame();
     }
 
-    boardRows.forEach(row => {
-      row.classList.remove(winnerClass);
-    });
+    if(winnerClass != ''){  
+      boardRows.forEach(row => {
+        row.classList.remove(winnerClass);
+      });
+  }
   }, 800);
 }
 

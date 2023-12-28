@@ -26,6 +26,7 @@ function startGame() {
   cells.forEach(cell => {
     cell.classList.remove(X_CLASS);
     cell.classList.remove(O_CLASS);
+    cell.innerText = ''; // Limpa o conteúdo das células
     cell.removeEventListener('click', handleClick);
     cell.addEventListener('click', handleClick, { once: true });
   });

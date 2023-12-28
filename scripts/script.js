@@ -57,8 +57,14 @@ function endGame(draw) {
   cells.forEach(cell => {
     cell.removeEventListener('click', handleClick);
   });
-}
 
+  setTimeout(() => {
+    const restart = confirm('Deseja jogar novamente?');
+    if (restart) {
+      startGame();
+    }
+  }, 500); 
+}
 function placeMark(cell, currentClass) {
   cell.innerText = currentClass;
   cell.classList.add(currentClass);
